@@ -1,0 +1,41 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net7.0</TargetFramework>
+    <IsPackable>false</IsPackable>
+    <GenerateProgramFile>false</GenerateProgramFile>
+    <IsTestProject>true</IsTestProject>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\FsShell\FsShell.fsproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Infrastructure/Utility.fs" />
+    <Compile Include="Infrastructure/DataFileTests.fs" />
+    <Compile Include="Command/CatTests.fs" />
+    <Compile Include="Command/CdTests.fs" />
+    <Compile Include="Command/CopyTests.fs" />
+    <Compile Include="Command/CutTests.fs" />
+    <Compile Include="Command/FindTests.fs" />
+    <Compile Include="Command/GrepTests.fs" />
+    <Compile Include="Command/HeadTests.fs" />
+    <Compile Include="Command/ListTests.fs" />
+    <Compile Include="Command/MkdirTests.fs" />
+    <Compile Include="Command/MoveTests.fs" />
+    <Compile Include="Command/OutputTests.fs" />
+    <Compile Include="Command/TailTests.fs" />
+    <Compile Include="Command/TeeTests.fs" />
+    <Compile Include="Program.fs" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.3.2" />
+    <PackageReference Include="xunit" Version="2.4.2" />
+    <PackageReference Include="xunit.runner.visualstudio" Version="2.4.5">
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+      <PrivateAssets>all</PrivateAssets>
+    </PackageReference>
+    <PackageReference Include="coverlet.collector" Version="3.1.2">
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+      <PrivateAssets>all</PrivateAssets>
+    </PackageReference>
+  </ItemGroup>
+</Project>

@@ -1,0 +1,38 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFrameworks>net7.0;net6.0;netstandard2.1</TargetFrameworks>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <PackageId>FsShell</PackageId>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <Version>0.0.2</Version>
+    <Authors>Greg H</Authors>
+    <Product>FsShell</Product>
+    <Company>SpiralOSS</Company>
+    <Description>List of Shell-like commands for use in F#.</Description>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="Infrastructure/Seq.fs" />
+    <Compile Include="Infrastructure/Utility.fs" />
+    <Compile Include="Infrastructure/ManualEntryAttribute.fs" />
+    <Compile Include="Infrastructure/DataFile.fs" />
+    <Compile Include="Command/Cat.fs" />
+    <Compile Include="Command/Cd.fs" />
+    <Compile Include="Command/Copy.fs" />
+    <Compile Include="Command/Cut.fs" />
+    <Compile Include="Command/Find.fs" />
+    <Compile Include="Command/Grep.fs" />
+    <Compile Include="Command/Head.fs" />
+    <Compile Include="Command/Mkdir.fs" />
+    <Compile Include="Command/List.fs" />
+    <Compile Include="Command/Move.fs" />
+    <Compile Include="Command/Output.fs" />
+    <Compile Include="Command/Pwd.fs" />
+    <Compile Include="Command/Tail.fs" />
+    <Compile Include="Command/Tee.fs" />
+    <Compile Include="FsShell.fs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="../../README.md" Pack="true" PackagePath="\" />
+  </ItemGroup>
+</Project>
