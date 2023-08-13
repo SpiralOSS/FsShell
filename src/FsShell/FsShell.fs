@@ -106,14 +106,14 @@ let inline egrep_in (pattern:string) (contents:string seq) = Command.Grep.egrep 
 let inline head_n (count:int) (contents:'a seq) = Command.Head.head count contents
 
 [<ManualEntry([|"head"|],"Data Flow","First 10 lines","")>]
-let inline head (contents:'a seq) = head_n 10
+let inline head (contents:'a seq) = head_n 10 contents
 
 
 [<ManualEntry([|"tail"|],"Data Flow","Last count lines, or skip first count of lines","")>]
 let inline tail_n (count:int) (contents:'a seq) = Command.Tail.tail count contents
 
 [<ManualEntry([|"tail"|],"Data Flow","Last 10 lines","")>]
-let inline tail (contents:'a seq) = tail_n 10
+let inline tail (contents:'a seq) = tail_n 10 contents
 
 
 let private manualEntries = ManualEntryAttribute.getManualEntriesFromType typeof<IFsShell>
