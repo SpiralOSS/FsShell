@@ -55,7 +55,6 @@ let inline tee (path:string) (contents:string seq) = Command.Tee.Tee defaultEnco
 [<ManualEntry([|"tee"|],"Output","Append to a file and passthrough","")>]
 let inline tee_a (path:string) (contents:string seq) = Command.Tee.Tee defaultEncoding true path contents
 
-
 [<ManualEntry([|"cat"|],"Output","Read a list of files consecutively","")>]
 let inline cat (paths:string seq) = Command.Cat.cat defaultEncoding paths
 
@@ -72,7 +71,7 @@ let inline cut_c (ranges:(int option*int option) list) (contents:string seq) = C
 [<ManualEntry([|"cut"|],"Data Manipulation","Cut character ranges","")>]
 let inline cut_c2 (ranges:(int*int) list) (contents:string seq) = cut_c (ranges |> List.map (fun (aa, bb) -> (Some aa, Some bb))) contents
 
-[<ManualEntry([|"cut"|],"Data Manipulation","Splits CSV into columns","")>]
+[<ManualEntry([|"cut"|],"Data Manipulation","Splits data file into columns","Will autodetect CSV, PCARET, CPIPE, and CONCORDANCE")>]
 let inline cutx (contents:string seq) = Command.Cut.cutx contents
 
 

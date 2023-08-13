@@ -10,7 +10,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Infrastructure/Utility.fs" />
-    <Compile Include="Infrastructure/DataFileTests.fs" />
+    <Compile Include="Infrastructure/Seq.fs" />
+    <Compile Include="Infrastructure/DataReaderTests.fs" />
     <Compile Include="Command/CatTests.fs" />
     <Compile Include="Command/CdTests.fs" />
     <Compile Include="Command/CopyTests.fs" />

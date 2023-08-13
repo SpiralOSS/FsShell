@@ -18,6 +18,11 @@ let cut_c (ranges:(int option*int option) list) (contents:string seq) =
         |> String.concat ""
     )
 
+open SpiralOSS.FsShell.Infrastructure.DataReader
 let cutx (contents:string seq) =
+    let spAndQt =
+        match Seq.tryHead contents with
+        | Some content -> determineSpAndQt content
+        | _ -> None
     contents
-    |> Seq.map (SpiralOSS.FsShell.Infrastructure.DataFile.ReadLine (',','"'))
+    |> Seq.map (readDataLine (Option.defaultValue (',','"') spAndQt))

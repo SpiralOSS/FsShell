@@ -25,3 +25,8 @@ let takeSafe (count:int) (source:seq<'a>) : seq<'a> =
                 yield enum.Current
                 outputted <- outputted + 1
         }
+
+/// <summary>Perform an action on each item, but passthrough</summary>
+/// <param name="action">action to perform</param>
+/// <returns>seq<'T></returns>
+let iterTee (action:'T->unit) = Seq.filter (fun item -> action item; true)

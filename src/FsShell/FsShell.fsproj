@@ -15,7 +15,7 @@
     <Compile Include="Infrastructure/Seq.fs" />
     <Compile Include="Infrastructure/Utility.fs" />
     <Compile Include="Infrastructure/ManualEntryAttribute.fs" />
-    <Compile Include="Infrastructure/DataFile.fs" />
+    <Compile Include="Infrastructure/DataReader.fs" />
     <Compile Include="Command/Cat.fs" />
     <Compile Include="Command/Cd.fs" />
     <Compile Include="Command/Copy.fs" />

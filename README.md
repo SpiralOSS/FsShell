@@ -9,7 +9,11 @@ These commands are NOT intended for projects with a long life. It is recommended
 #r "nuget:FsShell"
 open FsShell
 man "";;
+```
 
+[All functions are in FsShell.fs](src/FsShell/FsShell.fs)
+
+```
 System
   cd        Change directory
   pwd       Print working directory
@@ -34,7 +38,7 @@ Data Manipulation
   cut_d     Split lines at delimeter
   cut_c     Cut character range options
   cut_c2    Cut character ranges
-  cutx      Splits CSV into columns
+  cutx      Splits data file into columns
 Data Flow
   grep      Filter lines to include
   grep_i    Filter lines to include, case insensitive
@@ -51,8 +55,6 @@ Data Flow
 Miscellaneous
   man       This
 ```
-
-[All functions are in FsShell.fs](src/FsShell/FsShell.fs)
 
 ## Examples
 
