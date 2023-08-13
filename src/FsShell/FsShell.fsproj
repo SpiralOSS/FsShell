@@ -5,9 +5,10 @@
     <PackageId>FsShell</PackageId>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <PackageReadmeFile>README.md</PackageReadmeFile>
-    <Version>0.0.2</Version>
+    <Version>0.0.3</Version>
     <Authors>Greg H</Authors>
     <Product>FsShell</Product>
+    <PackageProjectUrl>https://github.com/SpiralOSS/FsShell</PackageProjectUrl>
     <Company>SpiralOSS</Company>
     <Description>List of Shell-like commands for use in F#.</Description>
   </PropertyGroup>
