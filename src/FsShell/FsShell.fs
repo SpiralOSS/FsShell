@@ -71,8 +71,9 @@ let inline cut_c (ranges:(int option*int option) list) (contents:string seq) = C
 [<ManualEntry([|"cut"|],"Data Manipulation","Cut character ranges","")>]
 let inline cut_c2 (ranges:(int*int) list) (contents:string seq) = cut_c (ranges |> List.map (fun (aa, bb) -> (Some aa, Some bb))) contents
 
-[<ManualEntry([|"cut"|],"Data Manipulation","Splits data file into columns","Will autodetect CSV, PCARET, CPIPE, and CONCORDANCE")>]
-let inline cutx (contents:string seq) = Command.Cut.cutx contents
+
+[<ManualEntry([|"cut";"data"|],"Data Manipulation","Splits data file into columns","Will autodetect CSV, PCARET, CPIPE, and CONCORDANCE")>]
+let inline cut_x (contents:string seq) = Command.Cut.cut_x contents
 
 
 [<ManualEntry([|"grep";"egrep"|],"Data Flow","Filter lines to include","")>]

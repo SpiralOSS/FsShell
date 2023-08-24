@@ -3,7 +3,7 @@ module SpiralOSS.FsShell.Command.Paste
 open System.IO
 open System.Text
 
-let Paste (encoding:Encoding) (delimiter:string) (paths:string seq) =
+let paste (encoding:Encoding) (delimiter:string) (paths:string seq) =
     seq {
         // OPEN ALL THE FILES
         let srs =

@@ -5,5 +5,5 @@ open System.Text
 let cat (encoding:Encoding) (paths:string seq) =
     seq {
         for path in paths do
-            yield! SpiralOSS.FsShell.Infrastructure.Utility.ReadFile encoding path
+            yield! SpiralOSS.FsShell.Infrastructure.Utility.readFile encoding path
     }

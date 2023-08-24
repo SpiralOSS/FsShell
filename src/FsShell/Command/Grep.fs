@@ -11,11 +11,11 @@ let grep (ignoreCase:bool) (inverse:bool) (pattern:string) (contents:string seq)
         | (true, true)   -> fun (content:string) -> not (content.Contains(pattern, System.StringComparison.CurrentCultureIgnoreCase))
     Seq.filter filterMethod contents
 
-let egrep (ignoreCase:bool) (inverse:bool)  (pattern:string) (contents:string seq) =
+let egrep (ignoreCase:bool) (inverse:bool) (pattern:string) (contents:string seq) =
     let compiledRegex =
         match ignoreCase with
         | false -> Regex(pattern, RegexOptions.Compiled)
-        | true -> Regex(pattern, RegexOptions.Compiled + RegexOptions.IgnoreCase)
+        | true  -> Regex(pattern, RegexOptions.Compiled + RegexOptions.IgnoreCase)
     let filterMethod =
         match inverse with
         | false -> fun (content:string) -> compiledRegex.IsMatch(content)

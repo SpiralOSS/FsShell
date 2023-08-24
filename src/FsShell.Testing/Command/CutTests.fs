@@ -79,7 +79,7 @@ let ``Test Cutx`` () =
     let actual =
         expect
         |> Seq.map (fun row -> row |> String.concat ",")
-        |> cutx
+        |> cut_x
 
     Assert.True(
         Seq.zip expect actual
@@ -97,7 +97,7 @@ let ``Test Cutx with quotes`` () =
     let actual =
         expect
         |> Seq.map (fun row -> row |> Seq.map (fun col -> $"{col}") |> String.concat ",")
-        |> cutx
+        |> cut_x
 
     Assert.True(
         Seq.zip expect actual

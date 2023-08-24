@@ -1,9 +1,7 @@
 module SpiralOSS.FsShell.Infrastructure.DataReader
 
-open System
 open System.Collections.Generic
 open System.Text
-open System.Linq
 
 let readDataLine (separatorAndQuantifier:char*char) (row:string) =
     let (separator, quantifier) = separatorAndQuantifier
@@ -46,38 +44,8 @@ let readDataLine (separatorAndQuantifier:char*char) (row:string) =
     columns.ToArray()
 
 let readDataFile (separatorAndQuantifier:char*char) (path:string) =
-    Utility.ReadFile Encoding.UTF8 path
+    Utility.readFile Encoding.UTF8 path
     |> Seq.map (fun line -> readDataLine separatorAndQuantifier line)
-
-let private charactersThatFollowACharacter (line:string) (lookingChar:char) : char seq =
-    seq {
-        let mutable printNext = false
-        for chr in (line.ToCharArray ()) do
-            if chr = lookingChar then
-                printNext <- true
-            elif printNext then
-                printNext <- false
-                yield chr
-            else
-                ()
-    }
-
-let commonSpFromQt (chr:char) =
-    match chr with
-    | '"' -> Some ','
-    | '|' -> Some '^'
-    | '^' -> Some '|'
-    | '\uc3be' -> (Some ((char)20uy))
-    | it when it = (char)254uy -> (Some ((char)20uy))
-    | _ -> None
-
-let commonQtFromSp (chr:char) =
-    match chr with
-    | ',' -> Some '"'
-    | '|' -> Some '^'
-    | '^' -> Some '|'
-    | it when it = (char)20uy -> (Some '\uc3be')
-    | _ -> None
 
 let determineSeparatorAndQuantifier isValidSp isValidQt (getSpFromQt:char->char option) (getQtFromSp:char->char option) (line:string) : (char*char) option =
 
@@ -123,6 +91,22 @@ let determineSeparatorAndQuantifier isValidSp isValidQt (getSpFromQt:char->char 
                 | _ -> None
             | _ -> None
 
+let commonSpFromQt (chr:char) =
+    match chr with
+    | '"' -> Some ','
+    | '|' -> Some '^'
+    | '^' -> Some '|'
+    | '\uc3be' -> (Some ((char)20uy))
+    | it when it = (char)254uy -> (Some ((char)20uy))
+    | _ -> None
+
+let commonQtFromSp (chr:char) =
+    match chr with
+    | ',' -> Some '"'
+    | '|' -> Some '^'
+    | '^' -> Some '|'
+    | it when it = (char)20uy -> (Some '\uc3be')
+    | _ -> None
 
 let determineSpAndQt =
     determineSeparatorAndQuantifier

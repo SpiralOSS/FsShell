@@ -10,7 +10,6 @@ let sampleTextSeq =
         "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
     }
 
-
 // AS SINGLETON
 //  allows us to call a function that takes a string seq and
 //  run it with a single item
