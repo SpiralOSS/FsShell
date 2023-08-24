@@ -102,6 +102,31 @@ let inline egrep_n (pattern:string) (contents:string seq) = Command.Grep.egrep f
 let inline egrep_in (pattern:string) (contents:string seq) = Command.Grep.egrep true false pattern contents
 
 
+[<ManualEntry([|"grep";"data"|],"Data Flow","Filter on a pattern in specified columns","")>]
+let inline xgrep (pattern:string) (ranges:(int option*int option) list) (contents:string[] seq) = Command.Grep.xgrep false true pattern ranges contents
+
+[<ManualEntry([|"grep";"egrep";"data"|],"Data Flow","Filter on a case-insensitive pattern in specified columns","")>]
+let inline xgrep_i (pattern:string) (ranges:(int option*int option) list) (contents:string[] seq) = Command.Grep.xgrep true true pattern ranges contents
+
+[<ManualEntry([|"grep";"egrep";"data"|],"Data Flow","Inverted filter on a pattern in specified columns","")>]
+let inline xgrep_n (pattern:string) (ranges:(int option*int option) list) (contents:string[] seq) = Command.Grep.xgrep false false pattern ranges contents
+
+[<ManualEntry([|"grep";"egrep";"data"|],"Data Flow","Inverted filter on a case-insensitive pattern in specified columns","")>]
+let inline xgrep_in (pattern:string) (ranges:(int option*int option) list) (contents:string[] seq) = Command.Grep.xgrep true false pattern ranges contents
+
+[<ManualEntry([|"grep";"data"|],"Data Flow","Filter on a regex in specified columns","")>]
+let inline xegrep (pattern:string) (ranges:(int option*int option) list) (contents:string[] seq) = Command.Grep.xegrep false true pattern ranges contents
+
+[<ManualEntry([|"grep";"egrep";"data"|],"Data Flow","Filter on a case-insensitive regex in specified columns","")>]
+let inline xegrep_i (pattern:string) (ranges:(int option*int option) list) (contents:string[] seq) = Command.Grep.xegrep true true pattern ranges contents
+
+[<ManualEntry([|"grep";"egrep";"data"|],"Data Flow","Inverted filter on a regex in specified columns","")>]
+let inline xegrep_n (pattern:string) (ranges:(int option*int option) list) (contents:string[] seq) = Command.Grep.xegrep false false pattern ranges contents
+
+[<ManualEntry([|"grep";"egrep";"data"|],"Data Flow","Inverted filter on a case-insensitive regex in specified columns","")>]
+let inline xegrep_in (pattern:string) (ranges:(int option*int option) list) (contents:string[] seq) = Command.Grep.xegrep true false pattern ranges contents
+
+
 [<ManualEntry([|"head"|],"Data Flow","First count lines","")>]
 let inline head_n (count:int) (contents:'a seq) = Command.Head.head count contents
 
