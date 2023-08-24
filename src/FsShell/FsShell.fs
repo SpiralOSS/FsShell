@@ -5,6 +5,11 @@ open System.Text
 open SpiralOSS.FsShell
 open SpiralOSS.FsShell.Infrastructure
 
+let PCARET = ('|','^')
+let CPIPE = ('^','|')
+let CSV = (',','"')
+let CONCORDANCE = ('\u0014','\uc3be')
+
 let mutable defaultEncoding = Encoding.UTF8
 
 [<ManualEntry([|"cd";"chdir"|],"System","Change directory","")>]
@@ -74,6 +79,10 @@ let inline cut_c2 (ranges:(int*int) list) (contents:string seq) = cut_c (ranges 
 
 [<ManualEntry([|"cut";"data"|],"Data Manipulation","Splits data file into columns","Will autodetect CSV, PCARET, CPIPE, and CONCORDANCE")>]
 let inline cut_x (contents:string seq) = Command.Cut.cut_x contents
+
+
+[<ManualEntry([|"join";"data"|],"Data Manipulation","Join columns into data","")>]
+let inline xjoin (separatorAndQuantifier:char*char) (contents:string[] seq) = Command.Join.xjoin separatorAndQuantifier contents
 
 
 [<ManualEntry([|"grep";"egrep"|],"Data Flow","Filter lines to include","")>]

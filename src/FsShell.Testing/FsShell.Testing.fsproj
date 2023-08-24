@@ -19,6 +19,7 @@
     <Compile Include="Command/FindTests.fs" />
     <Compile Include="Command/GrepTests.fs" />
     <Compile Include="Command/HeadTests.fs" />
+    <Compile Include="Command/JoinTests.fs" />
     <Compile Include="Command/ListTests.fs" />
     <Compile Include="Command/MkdirTests.fs" />
     <Compile Include="Command/MoveTests.fs" />

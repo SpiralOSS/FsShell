@@ -17,6 +17,7 @@
     <Compile Include="Infrastructure/Utility.fs" />
     <Compile Include="Infrastructure/ManualEntryAttribute.fs" />
     <Compile Include="Infrastructure/DataReader.fs" />
+    <Compile Include="Infrastructure/DataWriter.fs" />
     <Compile Include="Command/Cat.fs" />
     <Compile Include="Command/Cd.fs" />
     <Compile Include="Command/Copy.fs" />
@@ -24,6 +25,7 @@
     <Compile Include="Command/Find.fs" />
     <Compile Include="Command/Grep.fs" />
     <Compile Include="Command/Head.fs" />
+    <Compile Include="Command/Join.fs" />
     <Compile Include="Command/Mkdir.fs" />
     <Compile Include="Command/List.fs" />
     <Compile Include="Command/Move.fs" />
