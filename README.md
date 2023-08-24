@@ -15,7 +15,7 @@ man "";;
 
 [All functions are in FsShell.fs](src/FsShell/FsShell.fs)
 
-Note: Most functions work with `seq<string>`. Functions prefixed with an 'x' work with `seq<string[]>`
+Note: Most functions work with `seq<string>`. Functions prefixed with an 'x' work with `seq<string array>`
 
 ```
 System
@@ -41,7 +41,7 @@ Data Manipulation
   cut_d     Split lines at delimeter
   cut_c     Cut character range options
   cut_c2    Cut character ranges
-  cut_x     Splits data file into columns
+  cut_x     Splits data file into columns; detects quotes and commas
   xjoin     Join columns into data
   sort      Sorting
   sort_k    Sorting by a substring
@@ -98,14 +98,12 @@ val it: string = "/Users/gregh/Projects/test_fsshell"
 - }
 - |> write "file1.txt"
 - ;;
-val it: unit = ()
 
 > // cat and grep
 - cat [ "file1.txt" ]
 - |> grep_i "second"
 - |> write "file2.txt"
 - ;;
-val it: unit = ()
 
 > cat [ "file1.txt"; "file2.txt" ];;
 val it: seq<string> =
@@ -124,9 +122,9 @@ val it: seq<string list> = seq [["A"; "B"]; ["C"; "D"]]
 > // also available is cut_d to split on a provided delimiter
 - // cut_c and cut_c2 to get specific character ranges
 
-> // cutx for handling CSV data files
+> // cut_x for handling CSV data files
 - cat [ "./datafile.csv" ]
-- |> cutx
+- |> cut_x
 - ;;
 val it: seq<string array> =
   seq
@@ -140,7 +138,7 @@ val it: seq<string array> =
 ```F#
 > // Used this command to find duplicate values
 - cat [ "file.dat" ]
-- |> cutx                             // parse the file
+- |> cut_x                            // parse the file
 - |> Seq.map (fun cols -> cols[0])    // get data from the first column
 - |> Seq.groupBy id                   // grouping by first column
 - |> Seq.map (fun (docid, docids) -> (docid, Seq.length docids))  // docid, count of docids
