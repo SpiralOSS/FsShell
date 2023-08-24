@@ -24,6 +24,7 @@
     <Compile Include="Command/MkdirTests.fs" />
     <Compile Include="Command/MoveTests.fs" />
     <Compile Include="Command/OutputTests.fs" />
+    <Compile Include="Command/SortTests.fs" />
     <Compile Include="Command/TailTests.fs" />
     <Compile Include="Command/TeeTests.fs" />
     <Compile Include="Program.fs" />

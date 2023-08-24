@@ -150,6 +150,25 @@ let inline tail_n (count:int) (contents:'a seq) = Command.Tail.tail count conten
 let inline tail (contents:'a seq) = tail_n 10 contents
 
 
+[<ManualEntry([|"sort"|],"Data Manipulation","Sorting","")>]
+let inline sort (contents:string seq) = Command.Sort.sort contents
+
+[<ManualEntry([|"sort"|],"Data Manipulation","Sorting by a substring","")>]
+let inline sort_k (range:(int option*int option)) (contents:string seq) = Command.Sort.sort_k range contents
+
+[<ManualEntry([|"sort"|],"Data Manipulation","Sorting by a substring as a number","")>]
+let inline sort_kn (range:(int option*int option)) (contents:string seq) = Command.Sort.sort_kn range contents
+
+[<ManualEntry([|"sort"|],"Data Manipulation","Sorting by columns","")>]
+let inline xsort (columns:int list) (contents:string[] seq) = Command.Sort.xsort columns contents
+
+[<ManualEntry([|"sort"|],"Data Manipulation","Sorting by columns, each as a number","")>]
+let inline xsort_n (columns:int list) (contents:string[] seq) = Command.Sort.xsort_n columns contents
+
+[<ManualEntry([|"sort"|],"Data Manipulation","Sorting by columns, specify as string or number","")>]
+let inline xsort2 (sortBy:(int*Command.Sort.SortBy) list) (contents:string[] seq) = Command.Sort.xsort' sortBy contents
+
+
 let private manualEntries = ManualEntryAttribute.getManualEntriesFromType typeof<IFsShell>
 [<ManualEntry([|"man";"manual"|],"Miscellaneous","This","")>]
 let man (funcName:string) =

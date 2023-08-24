@@ -31,6 +31,7 @@
     <Compile Include="Command/Move.fs" />
     <Compile Include="Command/Output.fs" />
     <Compile Include="Command/Pwd.fs" />
+    <Compile Include="Command/Sort.fs" />
     <Compile Include="Command/Tail.fs" />
     <Compile Include="Command/Tee.fs" />
     <Compile Include="FsShell.fs" />
