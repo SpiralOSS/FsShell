@@ -1,6 +1,8 @@
 # FsShell
 List of Shell-like commands for use in F#.
 
+I commonly work with data files in the legal space, so wanted a set of commands that I could use for quicker data manipulation and investigation.
+
 ## Caveat
 These commands are NOT intended for projects with a long life. It is recommended that this only be used in the FSI or for short fire-and-forget utilities. As I eat my own dog food and become more proficient in idiomatic F#, some things might change.
 
@@ -13,6 +15,8 @@ man "";;
 
 [All functions are in FsShell.fs](src/FsShell/FsShell.fs)
 
+Note: Most functions work with `seq<string>`. Functions prefixed with an 'x' work with `seq<string[]>`
+
 ```
 System
   cd        Change directory
@@ -21,7 +25,7 @@ System
   mv        Move file
   cp        Copy file
   ls        List
-  ll        List with details (fullname * size * FileInfo)
+  ll        List with details
   find      Find files
   find_p    Find folders
 Output
@@ -33,12 +37,18 @@ Output
   tee_a     Append to a file and passthrough
   cat       Read a list of files consecutively
 Data Manipulation
-  NOTE: these will create seq<string list> that aren't friendly with other commands
   cut       Split lines at tabs
   cut_d     Split lines at delimeter
   cut_c     Cut character range options
   cut_c2    Cut character ranges
-  cutx      Splits data file into columns
+  cut_x     Splits data file into columns
+  xjoin     Join columns into data
+  sort      Sorting
+  sort_k    Sorting by a substring
+  sort_kn   Sorting by a substring as a number
+  xsort     Sorting by columns
+  xsort_n   Sorting by columns, each as a number
+  xsort2    Sorting by columns, specify as string or number
 Data Flow
   grep      Filter lines to include
   grep_i    Filter lines to include, case insensitive
@@ -48,6 +58,14 @@ Data Flow
   grep_in   Filter lines to exclude, case insensitive
   egrep_n   Filter lines to exclude with regex
   egrep_in  Filter lines to exclude with regex, case insensitive
+  xgrep     Filter on a pattern in specified columns
+  xgrep_i   Filter on a case-insensitive pattern in specified columns
+  xgrep_n   Inverted filter on a pattern in specified columns
+  xgrep_in  Inverted filter on a case-insensitive pattern in specified columns
+  xegrep    Filter on a regex in specified columns
+  xegrep_i  Filter on a case-insensitive regex in specified columns
+  xegrep_n  Inverted filter on a regex in specified columns
+  xegrep_in  Inverted filter on a case-insensitive regex in specified columns
   head_n    First count lines
   head      First 10 lines
   tail_n    Last count lines, or skip first count of lines
@@ -116,6 +134,17 @@ val it: seq<string array> =
      [|"Val 1-1"; "Val 2-1"; "Val 3-1"|];
      [|"Val 1-2"; "Val 2-2"; "Val 3-2"|];
      [|"Val 1-3"; "Val 2-3"; "Val 3-3"|]]
+```
+
+### Data Investigation
+```F#
+> // Used this command to find duplicate values
+- cat [ "file.dat" ]
+- |> cutx                             // parse the file
+- |> Seq.map (fun cols -> cols[0])    // get data from the first column
+- |> Seq.groupBy id                   // grouping by first column
+- |> Seq.map (fun (docid, docids) -> (docid, Seq.length docids))  // docid, count of docids
+- ;;
 ```
 
 ## Miscellaneous
