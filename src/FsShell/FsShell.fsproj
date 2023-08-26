@@ -25,11 +25,11 @@
     <Compile Include="Command/Find.fs" />
     <Compile Include="Command/Grep.fs" />
     <Compile Include="Command/Head.fs" />
-    <Compile Include="Command/Join.fs" />
     <Compile Include="Command/Mkdir.fs" />
     <Compile Include="Command/List.fs" />
     <Compile Include="Command/Move.fs" />
     <Compile Include="Command/Output.fs" />
+    <Compile Include="Command/Paste.fs" />
     <Compile Include="Command/Pwd.fs" />
     <Compile Include="Command/Sort.fs" />
     <Compile Include="Command/Tail.fs" />

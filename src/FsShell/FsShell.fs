@@ -1,4 +1,5 @@
-﻿module FsShell
+﻿[<AutoOpen>]
+module FsShell
 type IFsShell = interface end  // used for getting the manual
 
 open System.Text
@@ -80,9 +81,11 @@ let inline cut_c2 (ranges:(int*int) list) (contents:string seq) = cut_c (ranges 
 [<ManualEntry([|"cut";"data"|],"Data Manipulation","Splits data file into columns","Will autodetect CSV, PCARET, CPIPE, and CONCORDANCE")>]
 let inline cut_x (contents:string seq) = Command.Cut.cut_x contents
 
+[<ManualEntry([|"join";"data"|],"Data Manipulation","Join columns into data","")>]
+let inline paste (separator:string) (paths:string list) = Command.Paste.paste defaultEncoding separator paths
 
 [<ManualEntry([|"join";"data"|],"Data Manipulation","Join columns into data","")>]
-let inline xjoin (separatorAndQuantifier:char*char) (contents:string[] seq) = Command.Join.xjoin separatorAndQuantifier contents
+let inline xpaste (separatorAndQuantifier:char*char) (contents:string[] seq) = Command.Paste.xpaste separatorAndQuantifier contents
 
 
 [<ManualEntry([|"grep";"egrep"|],"Data Flow","Filter lines to include","")>]
