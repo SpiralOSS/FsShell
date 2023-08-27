@@ -22,21 +22,21 @@ let ``Test Sort Ignore Case`` () =
 let ``Test Sort Range`` () =
     let input  = seq { "AC"; "BB"; "CA" }
     let expect = seq { "CA"; "BB"; "AC" }
-    let actual = sort_k (Some 1, Some 1) input
+    let actual = sort_k (1, 1) input
     Assert.True(expect.SequenceEqual(actual))
 
 [<Fact>]
 let ``Test Sort Range Ignore Case`` () =
     let input  = seq { "AC"; "Bb"; "Ca" }
     let expect = seq { "Ca"; "Bb"; "AC" }
-    let actual = sort_k (Some 1, Some 1) input
+    let actual = sort_k (1, 1) input
     Assert.True(expect.SequenceEqual(actual))
 
 [<Fact>]
 let ``Test Sort Number Range`` () =
     let input  = seq { "A31"; "B21"; "C11" }
     let expect = seq { "C11"; "B21"; "A31" }
-    let actual = sort_kn (Some 1, Some 2) input
+    let actual = sort_kn (1, 2) input
     Assert.True(expect.SequenceEqual(actual))
 
 [<Fact>]
@@ -91,7 +91,6 @@ let ``Test XSort Ignore Case`` () =
     ]
     let actual = xsort [ 1 ] input |> Seq.toList
     for (expectRow, actualRow) in (expect |> Seq.zip actual) do
-        //printfn "YES:%A %A" expectRow actualRow
         Assert.True(expectRow.SequenceEqual(actualRow))
 
 [<Fact>]

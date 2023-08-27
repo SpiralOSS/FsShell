@@ -8,10 +8,10 @@ let cut_d (delimiter:char seq) (contents:string seq) =
         content.Split ((Seq.toArray delimiter), System.StringSplitOptions.RemoveEmptyEntries) |> Seq.toList
         )
 
-let cut_c (ranges:(int option*int option) list) (contents:string seq) =
+let cut_c (ranges:(int*int) list) (contents:string seq) =
     contents
     |> Seq.map (fun content ->
-        stringSplice ranges content
+        stringRangeSplice' ranges content
         |> String.concat ""
         )
 

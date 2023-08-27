@@ -72,16 +72,13 @@ let inline cut (contents:string seq) = Command.Cut.cut_d (Seq.singleton '\t') co
 let inline cut_d (delimiter:char) (contents:string seq) = Command.Cut.cut_d (Seq.singleton delimiter) contents
 
 [<ManualEntry([|"cut"|],"Data Manipulation","Cut character range options","")>]
-let inline cut_c (ranges:(int option*int option) list) (contents:string seq) = Command.Cut.cut_c ranges contents
-
-[<ManualEntry([|"cut"|],"Data Manipulation","Cut character ranges","")>]
-let inline cut_c2 (ranges:(int*int) list) (contents:string seq) = cut_c (ranges |> List.map (fun (aa, bb) -> (Some aa, Some bb))) contents
-
+let inline cut_c (ranges:(int*int) list) (contents:string seq) = Command.Cut.cut_c ranges contents
 
 [<ManualEntry([|"cut";"data"|],"Data Manipulation","Splits data file into columns","Will autodetect CSV, PCARET, CPIPE, and CONCORDANCE")>]
 let inline cut_x (contents:string seq) = Command.Cut.cut_x contents
 
-[<ManualEntry([|"join";"data"|],"Data Manipulation","Join columns into data","")>]
+
+[<ManualEntry([|"join"|],"Data Manipulation","Join files into single file; line-to-line","")>]
 let inline paste (separator:string) (paths:string list) = Command.Paste.paste defaultEncoding separator paths
 
 [<ManualEntry([|"join";"data"|],"Data Manipulation","Join columns into data","")>]
@@ -111,32 +108,32 @@ let inline grep_in (pattern:string) (contents:string seq) = Command.Grep.grep tr
 let inline egrep_n (pattern:string) (contents:string seq) = Command.Grep.egrep false true pattern contents
 
 [<ManualEntry([|"grep";"egrep"|],"Data Flow","Filter lines to exclude with regex, case insensitive","")>]
-let inline egrep_in (pattern:string) (contents:string seq) = Command.Grep.egrep true false pattern contents
+let inline egrep_in (pattern:string) (contents:string seq) = Command.Grep.egrep true true pattern contents
 
 
 [<ManualEntry([|"grep";"data"|],"Data Flow","Filter on a pattern in specified columns","")>]
-let inline xgrep (pattern:string) (ranges:(int option*int option) list) (contents:string[] seq) = Command.Grep.xgrep false true pattern ranges contents
+let inline xgrep (pattern:string) (ranges:(int*int) list) (contents:string[] seq) = Command.Grep.xgrep false false pattern ranges contents
 
 [<ManualEntry([|"grep";"egrep";"data"|],"Data Flow","Filter on a case-insensitive pattern in specified columns","")>]
-let inline xgrep_i (pattern:string) (ranges:(int option*int option) list) (contents:string[] seq) = Command.Grep.xgrep true true pattern ranges contents
+let inline xgrep_i (pattern:string) (ranges:(int*int) list) (contents:string[] seq) = Command.Grep.xgrep true false pattern ranges contents
 
 [<ManualEntry([|"grep";"egrep";"data"|],"Data Flow","Inverted filter on a pattern in specified columns","")>]
-let inline xgrep_n (pattern:string) (ranges:(int option*int option) list) (contents:string[] seq) = Command.Grep.xgrep false false pattern ranges contents
+let inline xgrep_n (pattern:string) (ranges:(int*int) list) (contents:string[] seq) = Command.Grep.xgrep false true pattern ranges contents
 
 [<ManualEntry([|"grep";"egrep";"data"|],"Data Flow","Inverted filter on a case-insensitive pattern in specified columns","")>]
-let inline xgrep_in (pattern:string) (ranges:(int option*int option) list) (contents:string[] seq) = Command.Grep.xgrep true false pattern ranges contents
+let inline xgrep_in (pattern:string) (ranges:(int*int) list) (contents:string[] seq) = Command.Grep.xgrep true true pattern ranges contents
 
 [<ManualEntry([|"grep";"data"|],"Data Flow","Filter on a regex in specified columns","")>]
-let inline xegrep (pattern:string) (ranges:(int option*int option) list) (contents:string[] seq) = Command.Grep.xegrep false true pattern ranges contents
+let inline xegrep (pattern:string) (ranges:(int*int) list) (contents:string[] seq) = Command.Grep.xegrep false false pattern ranges contents
 
 [<ManualEntry([|"grep";"egrep";"data"|],"Data Flow","Filter on a case-insensitive regex in specified columns","")>]
-let inline xegrep_i (pattern:string) (ranges:(int option*int option) list) (contents:string[] seq) = Command.Grep.xegrep true true pattern ranges contents
+let inline xegrep_i (pattern:string) (ranges:(int*int) list) (contents:string[] seq) = Command.Grep.xegrep true false pattern ranges contents
 
 [<ManualEntry([|"grep";"egrep";"data"|],"Data Flow","Inverted filter on a regex in specified columns","")>]
-let inline xegrep_n (pattern:string) (ranges:(int option*int option) list) (contents:string[] seq) = Command.Grep.xegrep false false pattern ranges contents
+let inline xegrep_n (pattern:string) (ranges:(int*int) list) (contents:string[] seq) = Command.Grep.xegrep false true pattern ranges contents
 
 [<ManualEntry([|"grep";"egrep";"data"|],"Data Flow","Inverted filter on a case-insensitive regex in specified columns","")>]
-let inline xegrep_in (pattern:string) (ranges:(int option*int option) list) (contents:string[] seq) = Command.Grep.xegrep true false pattern ranges contents
+let inline xegrep_in (pattern:string) (ranges:(int*int) list) (contents:string[] seq) = Command.Grep.xegrep true true pattern ranges contents
 
 
 [<ManualEntry([|"head"|],"Data Flow","First count lines","")>]
@@ -157,10 +154,10 @@ let inline tail (contents:'a seq) = tail_n 10 contents
 let inline sort (contents:string seq) = Command.Sort.sort contents
 
 [<ManualEntry([|"sort"|],"Data Manipulation","Sorting by a substring","")>]
-let inline sort_k (range:(int option*int option)) (contents:string seq) = Command.Sort.sort_k range contents
+let inline sort_k (range:(int*int)) (contents:string seq) = Command.Sort.sort_k range contents
 
 [<ManualEntry([|"sort"|],"Data Manipulation","Sorting by a substring as a number","")>]
-let inline sort_kn (range:(int option*int option)) (contents:string seq) = Command.Sort.sort_kn range contents
+let inline sort_kn (range:(int*int)) (contents:string seq) = Command.Sort.sort_kn range contents
 
 [<ManualEntry([|"sort"|],"Data Manipulation","Sorting by columns","")>]
 let inline xsort (columns:int list) (contents:string[] seq) = Command.Sort.xsort columns contents

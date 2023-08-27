@@ -23,53 +23,53 @@ let ``Test Cut_d - spaces`` () =
 let ``Test Cut_c - None to 4`` () =
     let input = "Quick brown,fox,jumps\tover the lazy    dog  "
     let expect = "Quick"
-    let actual = Utility.AsSingleton (cut_c [(None, Some 4)]) input
+    let actual = Utility.AsSingleton (cut_c [(0, 4)]) input
     Assert.Equal(expect, actual);
 
 [<Fact>]
 let ``Test Cut_c - 0 to 4, 11 to 14`` () =
     let input = "Quick brown fox jumps over the lazy dog"
     let expect = "Quick fox"
-    let actual = Utility.AsSingleton (cut_c [(Some 0, Some 4); (Some 11, Some 14)]) input
+    let actual = Utility.AsSingleton (cut_c [(0, 4); (11, 14)]) input
     Assert.Equal(expect, actual);
 
 [<Fact>]
 let ``Test Cut_c - 31 to None`` () =
     let input = "Quick brown fox jumps over the lazy dog"
     let expect = "lazy dog"
-    let actual = Utility.AsSingleton (cut_c [(Some 31, None)]) input
+    let actual = Utility.AsSingleton (cut_c [(31, -1)]) input
     Assert.Equal(expect, actual);
 
 [<Fact>]
 let ``Test Cut_c - None to None`` () =
     let input = "Quick brown fox jumps over the lazy dog"
     let expect = input
-    let actual = Utility.AsSingleton (cut_c [(None, None)]) input
+    let actual = Utility.AsSingleton (cut_c [(0, -1)]) input
     Assert.Equal(expect, actual);
 
 [<Fact>]
-let ``Test Cut_c - None to 500`` () =
+let ``Test Cut_c - 0 to 500`` () =
     let input = "Quick brown fox jumps over the lazy dog"
     let expect = input
-    let actual = Utility.AsSingleton (cut_c [(None, Some 500)]) input
+    let actual = Utility.AsSingleton (cut_c [(0, 500)]) input
     Assert.Equal(expect, actual);
 
 [<Fact>]
-let ``Test Cut_c - -5 to None`` () =
+let ``Test Cut_c - -5 to -1`` () =
     let input = "Quick brown fox jumps over the lazy dog"
-    let expect = input
-    let actual = Utility.AsSingleton (cut_c [(Some -5, None)]) input
+    let expect = "y dog"
+    let actual = Utility.AsSingleton (cut_c [(-5, -1)]) input
     Assert.Equal(expect, actual);
 
 [<Fact>]
 let ``Test Cut_c - 500 to 505`` () =
     let input = "Quick brown fox jumps over the lazy dog"
     let expect = ""
-    let actual = Utility.AsSingleton (cut_c [(Some 500, Some 505)]) input
+    let actual = Utility.AsSingleton (cut_c [(500, 505)]) input
     Assert.Equal(expect, actual);
 
 [<Fact>]
-let ``Test Cutx`` () =
+let ``Test Cut_x`` () =
     let expect = [
         [ "Col   1"; "Col   2"; "Col   3" ]
         [ "Val 1-1"; "Val 2-1"; "Val 3-1" ]

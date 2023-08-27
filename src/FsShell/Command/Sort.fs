@@ -5,12 +5,12 @@ open System.Linq
 
 let sort (contents:string seq) = seq { yield! contents.OrderBy(fun it -> it) }
 
-let sort_k (ranges:(int option*int option)) (contents:string seq) =
-    seq { yield! contents.OrderBy (fun content -> (stringSplice [ ranges ] content) |> String.concat "") }
+let sort_k (ranges:(int*int)) (contents:string seq) =
+    seq { yield! contents.OrderBy (fun content -> (stringRangeSplice' [ ranges ] content) |> String.concat "") }
 
-let sort_kn (ranges:(int option*int option)) (contents:string seq) =
+let sort_kn (ranges:(int*int)) (contents:string seq) =
     contents |> Seq.sortBy (fun content ->
-        let sortNum = stringSplice [ ranges ] content |> String.concat ""
+        let sortNum = stringRangeSplice' [ ranges ] content |> String.concat ""
         let (success, number) = System.Int64.TryParse(sortNum)
         if success then number else 0L
         )

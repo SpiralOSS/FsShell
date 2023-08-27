@@ -78,7 +78,7 @@ let ``Test XGrep`` () =
         [| "Do Not Find Me"; "Val 2-3"; "Val 3-3" |]
     }
     let expect = 2
-    let actual = xgrep' false false "Find Me" ([ (1, 2) ]) input |> Seq.length
+    let actual = xgrep false false "Find Me" ([ (1, 2) ]) input |> Seq.length
     Assert.Equal(expect, actual)
 
 [<Fact>]
@@ -90,7 +90,7 @@ let ``Test XGrep 2`` () =
         [| "Do Not Find Me"; "Val 2-3"; "Val 3-3" |]
     }
     let expect = 2
-    let actual = xgrep false false "Find Me" ([ (Some 1, None) ]) input |> Seq.length
+    let actual = xgrep false false "Find Me" ([ (1, -1) ]) input |> Seq.length
     Assert.Equal(expect, actual)
 
 [<Fact>]
@@ -103,7 +103,7 @@ let ``Test XGrep Inverse`` () =
         [| "Do Not Find Me"; "Val 2-4"; "Val 3-4" |]
     }
     let expect = 3
-    let actual = xgrep false true "Find Me" ([ (Some 1, None) ]) input |> Seq.length
+    let actual = xgrep false true "Find Me" ([ (1, -1) ]) input |> Seq.length
     Assert.Equal(expect, actual)
 
 [<Fact>]
@@ -115,7 +115,7 @@ let ``Test XGrep Ignore Case`` () =
         [| "Do Not Find Me"; "Val 2-3"; "Val 3-3" |]
     }
     let expect = 2
-    let actual = xgrep true false "Find Me" ([ (Some 1, None) ]) input |> Seq.length
+    let actual = xgrep true false "Find Me" ([ (1, -1) ]) input |> Seq.length
     Assert.Equal(expect, actual)
 
 [<Fact>]
@@ -127,7 +127,7 @@ let ``Test XEGrep`` () =
         [| "Do Not Find Me"; "Val 2-3"; "Val 3-3" |]
     }
     let expect = 2
-    let actual = xegrep' false false "^Find Me$" ([ (0, 1); (2, 2) ]) input |> Seq.length
+    let actual = xegrep false false "^Find Me$" ([ (0, 1); (2, 2) ]) input |> Seq.length
     Assert.Equal(expect, actual)
 
 [<Fact>]
@@ -139,5 +139,5 @@ let ``Test XEGrep Inverse`` () =
         [| "Do Not Find Me"; "Val 2-3"; "Val 3-3" |]
     }
     let expect = 2
-    let actual = xegrep' false false "^Find Me$" ([ (0, 1); (2, 2) ]) input |> Seq.length
+    let actual = xegrep false false "^Find Me$" ([ (0, 1); (2, 2) ]) input |> Seq.length
     Assert.Equal(expect, actual)

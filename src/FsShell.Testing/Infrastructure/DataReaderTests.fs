@@ -78,5 +78,4 @@ let samplesDetermineSeparatorAndQuantifier : obj[] list =
 [<MemberData(nameof(samplesDetermineSeparatorAndQuantifier))>]
 let ``Test determineSeparatorAndQuantifier`` expect input =
     let actual = DataReader.determineSpAndQt input
-    printfn "Expect = %A; Actual = %A" expect actual
     Assert.Equal(expect, actual)

@@ -73,7 +73,6 @@ let determineSeparatorAndQuantifier isValidSp isValidQt (getSpFromQt:char->char 
                         (window[0] = (expectQt |> Option.orElse (Some window[2]) |> Option.get)) &&
                         (isValidSp window[1]) &&
                         (window[2] = (expectQt |> Option.orElse (Some window[0]) |> Option.get))
-                    //printfn "%A -> %b" window isQSQ
                     isQSQ && window[0] <> window[1]
                 )
                 |> Seq.tryHead
@@ -82,7 +81,6 @@ let determineSeparatorAndQuantifier isValidSp isValidQt (getSpFromQt:char->char 
         if validSpQt.IsSome then
             validSpQt
         else
-            printfn "%A or %A | %A" firstSp (getSpFromQt line[0]) expectQt
             match (firstSp |> Option.orElse (getSpFromQt line[0]), expectQt) with
             | (Some sp, Some qt) -> Some (sp, qt)
             | (Some sp, None) ->

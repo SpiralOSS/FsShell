@@ -9,7 +9,7 @@ These commands are NOT intended for projects with a long life. It is recommended
 ## Usage
 ```F#
 #r "nuget:FsShell"
-open FsShell
+
 man "";;
 ```
 
@@ -40,9 +40,9 @@ Data Manipulation
   cut       Split lines at tabs
   cut_d     Split lines at delimeter
   cut_c     Cut character range options
-  cut_c2    Cut character ranges
-  cut_x     Splits data file into columns; detects quotes and commas
-  xjoin     Join columns into data
+  cut_x     Splits data file into columns
+  paste     Join files into single file; line-to-line
+  xpaste    Join columns into data
   sort      Sorting
   sort_k    Sorting by a substring
   sort_kn   Sorting by a substring as a number
