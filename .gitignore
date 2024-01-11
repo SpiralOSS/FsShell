@@ -1,5 +1,6 @@
 /.vs/
 .vscode
+.idea
 /.paket/
 /packages/
 /paket-files/
