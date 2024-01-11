@@ -1,6 +1,7 @@
 module SpiralOSS.FsShell.Command.Cut
 
 open SpiralOSS.FsShell.Infrastructure.Utility
+open SpiralOSS.FsShell.Infrastructure.DataReader
 
 let cut_d (delimiter:char seq) (contents:string seq) =
     contents
@@ -15,7 +16,6 @@ let cut_c (ranges:(int*int) list) (contents:string seq) =
         |> String.concat ""
         )
 
-open SpiralOSS.FsShell.Infrastructure.DataReader
 let cut_x (contents:string seq) =
     let spAndQt =
         match Seq.tryHead contents with

@@ -35,8 +35,8 @@ let readDataLine (separatorAndQuantifier:char*char) (row:string) =
                 column.Clear() |> ignore
             | (false, true) ->  // abc",
                 failwith "Unexpected quantifier after separator"
-            | (true, false) ->  // "abc"",
-                failwith "Unmatched quantifier"
+            | (true, false) ->  // quoted separator
+                column.Append(chr) |> ignore
         else
             column.Append(chr) |> ignore
 

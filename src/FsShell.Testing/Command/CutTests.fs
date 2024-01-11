@@ -87,7 +87,7 @@ let ``Test Cut_x`` () =
     )
 
 [<Fact>]
-let ``Test Cutx with quotes`` () =
+let ``Test Cut_x with quotes`` () =
     let expect = [
         [ "Col   1"; "Col   2"; "Col   3" ]
         [ "Val 1-1"; "Val 2-1"; "Val 3-1" ]
@@ -96,10 +96,37 @@ let ``Test Cutx with quotes`` () =
     ]
     let actual =
         expect
-        |> Seq.map (fun row -> row |> Seq.map (fun col -> $"{col}") |> String.concat ",")
+        |> Seq.map (fun row -> row |> Seq.map (fun col -> $@"""{col}""") |> String.concat ",")
         |> cut_x
 
     Assert.True(
         Seq.zip expect actual
         |> Seq.forall (fun (expect_list, actual_list) -> expect_list.SequenceEqual(actual_list))
+    )
+
+[<Fact>]
+let ``Test Cut_x with quotes and commas`` () =
+    let expect = [
+        [ "Col   1"; "Col   2"; "Col   3" ]
+        [ "Val,1-1"; "Val 2-1"; "Val 3-1" ]
+        [ ",Val 1-2"; "Val 2-2"; "Val 3-2" ]
+        [ "Val 1-3,"; "Val 2-3"; "Val 3-3" ]
+    ]
+    let actual =
+        expect
+        |> Seq.map (fun row -> row |> Seq.map (fun col -> $@"""{col}""") |> String.concat ",")
+        |> cut_x
+
+    Assert.True(
+        Seq.zip expect actual
+        |> Seq.forall (fun (expect_list, actual_list) -> expect_list.SequenceEqual(actual_list))
+    )
+
+[<Fact>]
+let ``Test Cut_x pcaret with inline pipe`` () =
+    let expect = [ @"Test 1|"; "Test 2"; "Test 3" ]
+    let actual = [ @"^Test 1|^|Test 2|Test 3" ] |> cut_x |> Seq.head |> Seq.toList
+
+    Assert.True(
+        Seq.zip expect actual |> Seq.forall (fun (expect, actual) -> expect = actual)
     )

@@ -74,7 +74,7 @@ let inline cut_d (delimiter:char) (contents:string seq) = Command.Cut.cut_d (Seq
 [<ManualEntry([|"cut"|],"Data Manipulation","Cut character range options","")>]
 let inline cut_c (ranges:(int*int) list) (contents:string seq) = Command.Cut.cut_c ranges contents
 
-[<ManualEntry([|"cut";"data"|],"Data Manipulation","Splits data file into columns","Will autodetect CSV, PCARET, CPIPE, and CONCORDANCE")>]
+[<ManualEntry([|"cut";"data"|],"Data Manipulation","Splits data into columns","Will autodetect CSV, PCARET, CPIPE, and CONCORDANCE")>]
 let inline cut_x (contents:string seq) = Command.Cut.cut_x contents
 
 
