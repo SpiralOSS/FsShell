@@ -5,7 +5,7 @@
     <PackageId>FsShell</PackageId>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <PackageReadmeFile>README.md</PackageReadmeFile>
-    <Version>0.0.4</Version>
+    <Version>0.0.6</Version>
     <Authors>Greg H</Authors>
     <Product>FsShell</Product>
     <PackageProjectUrl>https://github.com/SpiralOSS/FsShell</PackageProjectUrl>
