@@ -6,7 +6,7 @@ open SpiralOSS.FsShell.Infrastructure.DataReader
 let cut_d (delimiter:char seq) (contents:string seq) =
     contents
     |> Seq.map (fun content ->
-        content.Split ((Seq.toArray delimiter), System.StringSplitOptions.RemoveEmptyEntries) |> Seq.toList
+        content.Split ((Seq.toArray delimiter), System.StringSplitOptions.RemoveEmptyEntries) |> Seq.toArray
         )
 
 let cut_c (ranges:(int*int) list) (contents:string seq) =

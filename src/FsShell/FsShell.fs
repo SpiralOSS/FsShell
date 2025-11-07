@@ -68,13 +68,13 @@ let inline cat (paths:string seq) = Command.Cat.cat defaultEncoding paths
 [<ManualEntry([|"cut"|],"Data Manipulation","Split lines at tabs","")>]
 let inline cut (contents:string seq) = Command.Cut.cut_d (Seq.singleton '\t') contents
 
-[<ManualEntry([|"cut"|],"Data Manipulation","Split lines at delimeter","")>]
+[<ManualEntry([|"cut"|],"Data Manipulation","Split lines at delimiter","")>]
 let inline cut_d (delimiter:char) (contents:string seq) = Command.Cut.cut_d (Seq.singleton delimiter) contents
 
 [<ManualEntry([|"cut"|],"Data Manipulation","Cut character range options","")>]
 let inline cut_c (ranges:(int*int) list) (contents:string seq) = Command.Cut.cut_c ranges contents
 
-[<ManualEntry([|"cut";"data"|],"Data Manipulation","Splits data into columns","Will autodetect CSV, PCARET, CPIPE, and CONCORDANCE")>]
+[<ManualEntry([|"cut";"data"|],"Data Manipulation","Splits data into columns","Will autodetect CSV, TAB, PCARET, CPIPE, and CONCORDANCE")>]
 let inline cut_x (contents:string seq) = Command.Cut.cut_x contents
 
 
@@ -176,7 +176,7 @@ let man (funcName:string) =
         manualEntries
         |> Seq.groupBy (fun manPage -> manPage.Group)
         |> Seq.iter (fun (manPageGroupName, manPageGroup) ->
-            printfn "%s" manPageGroupName
+            printfn $"%s{manPageGroupName}"
             manPageGroup
             |> Seq.iter (fun manPage ->
                 printfn $"  %-8s{manPage.MethodName}  %s{manPage.ShortDescription}"

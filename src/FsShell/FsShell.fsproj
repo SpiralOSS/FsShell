@@ -1,16 +1,16 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFrameworks>net6.0;net7.0;netstandard2.1;net8.0</TargetFrameworks>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <PackageId>FsShell</PackageId>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <PackageReadmeFile>README.md</PackageReadmeFile>
-    <Version>0.0.6</Version>
+    <Version>0.0.7</Version>
     <Authors>Greg H</Authors>
     <Product>FsShell</Product>
     <PackageProjectUrl>https://github.com/SpiralOSS/FsShell</PackageProjectUrl>
     <Company>SpiralOSS</Company>
     <Description>List of Shell-like commands for use in F#.</Description>
+    <TargetFramework>netstandard2.1</TargetFramework>
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Infrastructure/Seq.fs" />

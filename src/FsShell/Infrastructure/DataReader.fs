@@ -4,7 +4,7 @@ open System.Collections.Generic
 open System.Text
 
 let readDataLine (separatorAndQuantifier:char*char) (row:string) =
-    let (separator, quantifier) = separatorAndQuantifier
+    let separator, quantifier = separatorAndQuantifier
     let columns = List<string>()
     let column = StringBuilder()
     let mutable isQuantifiedColumn = false
@@ -13,29 +13,29 @@ let readDataLine (separatorAndQuantifier:char*char) (row:string) =
     for chr in row.ToCharArray() do
         if chr = quantifier then
             match (isQuantifiedColumn, wasOnQuantifier) with
-            | (false, false) ->
+            | false, false ->
                 isQuantifiedColumn <- true
-            | (false, true) ->
+            | false, true ->
                 failwith "Unexpected quantifier"
-            | (true, false) ->
+            | true, false ->
                 wasOnQuantifier <- true
-            | (true, true) ->
+            | true, true ->
                 wasOnQuantifier <- false
                 column.Append(quantifier) |> ignore
 
         elif chr = separator then
             match (isQuantifiedColumn, wasOnQuantifier) with
-            | (false, false) ->  // abc,
+            | false, false ->  // abc,
                 columns.Add(column.ToString())
                 column.Clear() |> ignore
-            | (true, true) ->  // "abc",
+            | true, true ->  // "abc",
                 isQuantifiedColumn <- false
                 wasOnQuantifier <- false
                 columns.Add(column.ToString())
                 column.Clear() |> ignore
-            | (false, true) ->  // abc",
+            | false, true ->  // abc",
                 failwith "Unexpected quantifier after separator"
-            | (true, false) ->  // quoted separator
+            | true, false ->  // quoted separator
                 column.Append(chr) |> ignore
         else
             column.Append(chr) |> ignore
@@ -45,7 +45,7 @@ let readDataLine (separatorAndQuantifier:char*char) (row:string) =
 
 let readDataFile (separatorAndQuantifier:char*char) (path:string) =
     Utility.readFile Encoding.UTF8 path
-    |> Seq.map (fun line -> readDataLine separatorAndQuantifier line)
+    |> Seq.map (readDataLine separatorAndQuantifier)
 
 let determineSeparatorAndQuantifier isValidSp isValidQt (getSpFromQt:char->char option) (getQtFromSp:char->char option) (line:string) : (char*char) option =
 
@@ -78,12 +78,14 @@ let determineSeparatorAndQuantifier isValidSp isValidQt (getSpFromQt:char->char 
                 |> Seq.tryHead
                 |> Option.map (fun qsq -> (qsq[1], qsq[0]))
 
+        // IF WE DID NOT FIND A SEPARATOR AND QUANTIFIER
+        //  try looking for just the separator
         if validSpQt.IsSome then
             validSpQt
         else
             match (firstSp |> Option.orElse (getSpFromQt line[0]), expectQt) with
-            | (Some sp, Some qt) -> Some (sp, qt)
-            | (Some sp, None) ->
+            | Some sp, Some qt -> Some (sp, qt)
+            | Some sp, None ->
                 match getQtFromSp sp with
                 | Some qt -> Some (sp, qt)
                 | _ -> None
@@ -94,8 +96,8 @@ let commonSpFromQt (chr:char) =
     | '"' -> Some ','
     | '|' -> Some '^'
     | '^' -> Some '|'
-    | '\uc3be' -> (Some ((char)20uy))
-    | it when it = (char)254uy -> (Some ((char)20uy))
+    | '\uc3be' -> (Some (char 20uy))
+    | it when it = char 254uy -> (Some (char 20uy))
     | _ -> None
 
 let commonQtFromSp (chr:char) =
@@ -103,12 +105,16 @@ let commonQtFromSp (chr:char) =
     | ',' -> Some '"'
     | '|' -> Some '^'
     | '^' -> Some '|'
-    | it when it = (char)20uy -> (Some '\uc3be')
+    | it when it = char 9 -> (Some '"')
+    | it when it = char 20uy -> (Some '\uc3be')
     | _ -> None
+
+let private separators = [ ','; '^'; '|'; char 20uy; char 9 ]
+let private quantifiers = [ '"'; '^'; '|'; '\uc3be'; '\u00fe'; char 254uy ]
 
 let determineSpAndQt =
     determineSeparatorAndQuantifier
-        (fun chr -> List.contains chr [ ','; '^'; '|'; (char)20uy ])
-        (fun chr -> List.contains chr [ '"'; '^'; '|'; '\uc3be'; '\u00fe'; (char)254uy ])
+        (fun chr -> List.contains chr separators)
+        (fun chr -> List.contains chr quantifiers)
         commonSpFromQt
         commonQtFromSp
